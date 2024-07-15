@@ -1,0 +1,195 @@
+-- Here we are creating the databases we had previously mapped out in our diagrams.
+create database office_depot;
+
+create table customer
+(
+    custID int(10) not null AUTO_INCREMENT,
+    custName varchar(100) not null,
+    street varchar(30),
+    city varchar(30),
+    state char(2),
+    zip char(5),
+    cardName varchar(100),
+    cardNumber char(16),
+    expiration char(5),
+    cvv char(3),
+    CONSTRAINT customer_pk PRIMARY KEY (custID)
+)
+ENGINE = INNODB;
+
+create table product
+(
+    productID int(10) not null AUTO_INCREMENT,
+    productName varchar(100),
+    description varchar(100),
+    productPrice double,
+    productType varchar(20),
+    CONSTRAINT product_pk PRIMARY KEY (productID)
+)
+ENGINE=INNODB;
+
+create table officeSupplies
+(
+    OSproductID int(10) not null,
+    consumables varchar(20),
+    CONSTRAINT office_supplies_pk primary key (OSproductID),
+    CONSTRAINT office_supplies_fk FOREIGN KEY (OSproductID) REFERENCES product(productID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+
+create table furniture
+(
+    FproductID int(10) not null,
+    material varchar(20),
+    CONSTRAINT furniture_pk primary key (FproductID),
+    CONSTRAINT furniture_fk FOREIGN KEY (FproductID) REFERENCES product(productID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table electronic
+(
+    EproductID int(10) not null,
+    brand varchar(100),
+    CONSTRAINT electronic_pk primary key (EproductID),
+    CONSTRAINT electronic_fk FOREIGN KEY (EproductID) REFERENCES product(productID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table orders
+(
+    orderID int(10) not null AUTO_INCREMENT,
+    orderDate date,
+    street varchar(30),
+    city varchar(30),
+    state char(2),
+    zip char(5),
+    orderStatus varchar(30),
+    orderType varchar(20),
+    custID int(10),
+    CONSTRAINT orders_pk PRIMARY KEY (orderID),
+    CONSTRAINT orders_fk FOREIGN KEY (custID) REFERENCES customer(custID) ON UPDATE CASCADE
+) 
+ENGINE=INNODB;
+
+create table vendor
+(
+    vendorID int(10) not null AUTO_INCREMENT,
+    name varchar(100) not null,
+    street varchar(30),
+    city varchar(30),
+    state char(2),
+    zip char(5),
+    phone char(10),
+    CONSTRAINT vendor_pk PRIMARY KEY (vendorID)
+)
+ENGINE=INNODB;
+
+create table warehouse
+(
+    warehouseID int(10) not null AUTO_INCREMENT,
+    street varchar(30),
+    city varchar(30),
+    state char(2),
+    zip char(5),
+    vendorID int(10),
+    CONSTRAINT warehouse_pk PRIMARY KEY (warehouseID),
+    CONSTRAINT warehouse_fk FOREIGN KEY (vendorID) REFERENCES vendor(vendorID) ON UPDATE CASCADE 
+)
+ENGINE=INNODB;
+
+create table delivery
+(
+    DOrderID int(10) not null,
+    trackingNumber varchar(22),
+    shippingDate date,
+    warehouseID int(10),
+    CONSTRAINT delivery_pk primary key (DOrderID),
+    CONSTRAINT delivery_fk1 FOREIGN KEY (DOrderID) REFERENCES orders(orderID) ON UPDATE CASCADE,
+    CONSTRAINT delivery_fk2 FOREIGN KEY (warehouseID) REFERENCES warehouse(warehouseID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table store
+(
+    storeID int(10) not null AUTO_INCREMENT,
+    street varchar(30),
+    city varchar(30),
+    state char(2),
+    zip char(5),
+    CONSTRAINT store_pk PRIMARY KEY (storeID)
+)
+ENGINE=INNODB;
+
+create table pickup
+(
+    POrderID int(10) not null,
+    pickupTime varchar(20),
+    storeID int(10),
+    CONSTRAINT pickup_pk primary key (POrderID),
+    CONSTRAINT pickup_fk1 FOREIGN KEY (POrderID) REFERENCES orders(orderID) ON UPDATE CASCADE,
+    CONSTRAINT pickup_fk2 FOREIGN KEY (storeID) REFERENCES store(storeID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table orderLine
+(
+    orderID int(10) not null,
+    productID int(10) not null,
+    quantity int(10),
+    CONSTRAINT orderLine_pk PRIMARY KEY (orderID, productID),
+    CONSTRAINT orderLine_fk1 FOREIGN KEY (orderID) REFERENCES orders(orderID) ON UPDATE CASCADE,
+    CONSTRAINT orderLine_fk2 FOREIGN KEY (productID) REFERENCES product(productID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table orderReturn
+(
+    receiptNumber char(13) not null,
+    purchaseDate date,
+    returnDate date,
+    storeID int(10),
+    CONSTRAINT orderReturn_pk PRIMARY KEY (receiptNumber),
+    CONSTRAINT orderReturn_fk FOREIGN KEY (storeID) REFERENCES store(storeID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table returnProcess
+(
+    receiptNumber char(13) not null,
+    storeID int(10) not null,
+    CONSTRAINT returnProcess_pk PRIMARY KEY (receiptNumber, storeID),
+    CONSTRAINT returnProcess_fk1 FOREIGN KEY (receiptNumber) REFERENCES orderReturn(receiptNumber) ON UPDATE CASCADE,
+    CONSTRAINT returnProcess_fk2 FOREIGN KEY (storeID) REFERENCES store(storeID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table employee
+(
+    employeeID int(10) not null AUTO_INCREMENT,
+    name varchar(100) not null,
+    SSN char(9),
+    employeeType varchar(10),
+    warehouseID int(10),
+    CONSTRAINT employee_pk PRIMARY KEY (employeeID),
+    CONSTRAINT employee_fk FOREIGN KEY (warehouseID) REFERENCES warehouse(warehouseID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table packer
+(
+    PemployeeID int(10) not null,
+    hourlyWage varchar(10),
+    CONSTRAINT packer_pk PRIMARY KEY (PemployeeID),
+    CONSTRAINT packer_pk FOREIGN KEY (PemployeeID) REFERENCES employee(employeeID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
+
+create table manager
+(
+    MemployeeID int(10) not null,
+    annualSalary varchar(10),
+    CONSTRAINT manager_pk PRIMARY KEY (MemployeeID),
+    CONSTRAINT manager_fk FOREIGN KEY (MemployeeID) REFERENCES employee(employeeID) ON UPDATE CASCADE
+)
+ENGINE=INNODB;
