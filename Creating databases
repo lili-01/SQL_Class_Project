@@ -1,6 +1,9 @@
 -- Here we are creating the databases we had previously mapped out in our diagrams.
+
+-- Creating database to house office depot data
 create database office_depot;
 
+-- creating  customer table
 create table customer
 (
     custID int(10) not null AUTO_INCREMENT,
@@ -17,6 +20,7 @@ create table customer
 )
 ENGINE = INNODB;
 
+-- creating  product table
 create table product
 (
     productID int(10) not null AUTO_INCREMENT,
@@ -27,7 +31,7 @@ create table product
     CONSTRAINT product_pk PRIMARY KEY (productID)
 )
 ENGINE=INNODB;
-
+-- creating  office supply table
 create table officeSupplies
 (
     OSproductID int(10) not null,
@@ -37,7 +41,7 @@ create table officeSupplies
 )
 ENGINE=INNODB;
 
-
+-- creating  furniture table
 create table furniture
 (
     FproductID int(10) not null,
@@ -47,6 +51,7 @@ create table furniture
 )
 ENGINE=INNODB;
 
+-- creating  electronic table
 create table electronic
 (
     EproductID int(10) not null,
@@ -55,7 +60,7 @@ create table electronic
     CONSTRAINT electronic_fk FOREIGN KEY (EproductID) REFERENCES product(productID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating  orders table
 create table orders
 (
     orderID int(10) not null AUTO_INCREMENT,
@@ -71,7 +76,7 @@ create table orders
     CONSTRAINT orders_fk FOREIGN KEY (custID) REFERENCES customer(custID) ON UPDATE CASCADE
 ) 
 ENGINE=INNODB;
-
+-- creating  vendor table
 create table vendor
 (
     vendorID int(10) not null AUTO_INCREMENT,
@@ -84,7 +89,7 @@ create table vendor
     CONSTRAINT vendor_pk PRIMARY KEY (vendorID)
 )
 ENGINE=INNODB;
-
+-- creating  warehouse table
 create table warehouse
 (
     warehouseID int(10) not null AUTO_INCREMENT,
@@ -97,7 +102,7 @@ create table warehouse
     CONSTRAINT warehouse_fk FOREIGN KEY (vendorID) REFERENCES vendor(vendorID) ON UPDATE CASCADE 
 )
 ENGINE=INNODB;
-
+-- creating  delivery table
 create table delivery
 (
     DOrderID int(10) not null,
@@ -109,7 +114,7 @@ create table delivery
     CONSTRAINT delivery_fk2 FOREIGN KEY (warehouseID) REFERENCES warehouse(warehouseID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating store table
 create table store
 (
     storeID int(10) not null AUTO_INCREMENT,
@@ -120,7 +125,7 @@ create table store
     CONSTRAINT store_pk PRIMARY KEY (storeID)
 )
 ENGINE=INNODB;
-
+-- creating  pickup table
 create table pickup
 (
     POrderID int(10) not null,
@@ -131,7 +136,7 @@ create table pickup
     CONSTRAINT pickup_fk2 FOREIGN KEY (storeID) REFERENCES store(storeID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating  orderline table
 create table orderLine
 (
     orderID int(10) not null,
@@ -142,7 +147,7 @@ create table orderLine
     CONSTRAINT orderLine_fk2 FOREIGN KEY (productID) REFERENCES product(productID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating  order return table
 create table orderReturn
 (
     receiptNumber char(13) not null,
@@ -153,7 +158,7 @@ create table orderReturn
     CONSTRAINT orderReturn_fk FOREIGN KEY (storeID) REFERENCES store(storeID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating  return process table
 create table returnProcess
 (
     receiptNumber char(13) not null,
@@ -163,7 +168,7 @@ create table returnProcess
     CONSTRAINT returnProcess_fk2 FOREIGN KEY (storeID) REFERENCES store(storeID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating  employee table
 create table employee
 (
     employeeID int(10) not null AUTO_INCREMENT,
@@ -175,7 +180,7 @@ create table employee
     CONSTRAINT employee_fk FOREIGN KEY (warehouseID) REFERENCES warehouse(warehouseID) ON UPDATE CASCADE
 )
 ENGINE=INNODB;
-
+-- creating  packer table
 create table packer
 (
     PemployeeID int(10) not null,
@@ -185,6 +190,7 @@ create table packer
 )
 ENGINE=INNODB;
 
+-- creating  manager table
 create table manager
 (
     MemployeeID int(10) not null,
