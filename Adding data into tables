@@ -1,0 +1,248 @@
+-- After we created the tables we loaded in fake data 
+
+-- loading fake data into customers table
+INSERT INTO customer(custID, custName, street, city, state, zip, cardName, cardNumber, expiration, cvv) VALUES
+(1, 'Roy Herbert', '376 Walnutwood Lane', 'Canfield', 'OH', '44406', 'Roy Herbert', '4830987473667687', '03/26', '281'),
+(2, 'Hugues Liliane', '905 Glendale Lane', 'Macungie', 'PA', '18062', 'Hugues Liliane', '4890794367203935', '07/26', '112'),
+(3, 'Claud Brittney', '9184 South Armstrong Drive', 'Elkton', 'MD', '21921', 'Claud Brittney', '4826272520376764', '03/25', '564'),
+(4, 'Leanne Juliane', '7852 Shirley Drive', 'Columbus', 'GA', '31904', 'Leanne Juliane', '4260099652333682', '01/23', '229'),
+(5, 'Roscoe Alix', '7330 Wild Horse Drive', 'Lake Mary', 'FL', '32746', 'Roscoe Alix', '5118059752993083', '08/24', '752'),
+(6, 'Scarlett Lindsay', '7546 West Cherry Hill Street', 'Camas', 'WA', '98607', 'Scarlett Lindsay', '5124516274817829', '02/23', '136'),
+(7, 'Kellan Josey', '3 Beaver Ridge Avenue', 'Fairburn', 'GA', '30213', 'Kellan Josey', '4640421254791888', '09/25', '242'),
+(8, 'Windsor Brittania', '7 Franklin Avenue', 'Circle Pines', 'MN', '55014', 'Windsor Brittania', '5118693071833602', '10/24', '138'),
+(9, 'Wilford Garth', '62 Birch Hill Street', 'Fort Wayne', 'IN', '46804', 'Wilford Garth', '3495655698108930', '04/25', '890'),
+(10, 'Monty Keefe', '314 Westport Avenue', 'West Springfield', 'MA', '01089', 'Monty Keefe', '4991956963590985', '12/24', '909'),
+(11, 'Wilda Rosemary', '403 Maple St', 'Wenatchee', 'WA', '98801', 'Wilda Rosemary', '5161924162948819', '05/25', '301'),
+(12, 'Gregg Kevyn', '7493 Highland Street', 'Grove City', 'OH', '43123', 'Gregg Kevyn', '4223672551320053', '05/26', '689'),
+(13, 'Sandra Sky', '7567 Roadside Street', 'Los Angeles', 'CA', '90008', 'Sandra Sky', '4583668556920903', '12/23', '457'),
+(14, 'Ana Fontier', '5895 Willow Street', 'Signal Hill', 'CA', '91945', 'Ana Fontier', '3453678695939234', '04/29', '590');
+
+-- loading fake data into product table
+INSERT INTO product(productID, productName, description, productPrice, productType) VALUES
+(101, 'Highlighters', 'Chisel Tip, Assorted Colors, Pack Of 12', 12.79, 'Office Supply'),
+(102, 'Composition Book', '7-1/2" x 9-3/4", Wide Ruled, 100 Sheets', 1.99, 'Office Supply'),
+(103, 'Sticky Notes', '3 in x 3 in, Canary Yellow, Pack Of 18 Pads', 16.99, 'Office Supply'),
+(104, 'Binder Divider', '8-1/2" x 11", 26 Tab, Multicolor', 9.99, 'Office Supply'),
+(105, 'Computer Desk', '48"W Glass Desk, Silver', 209.99, 'Furniture'),
+(106, 'File Cabinet', '22"D Vertical 4-Drawer, Metal, Black', 229.99, 'Furniture'),
+(107, '3-Ring Binder', '1" Round Rings, 49% Recycled, White', 5.99, 'Office Supply'),
+(108, 'Office Chair', 'Bonded Leather High-Back Executive Chair', 269.99, 'Furniture'),
+(109, 'Table', 'Molded Plastic Top Folding Table with Handles, 29"H x 72"W x 29-1/4"D, Platinum/Charcoal', 129.99, 'Furniture'),
+(110, 'Shredder', '14-Sheet Super Micro-Cut Shredder', 139.99, 'Electronic'),
+(111, 'Dell Inspiron 3511 Laptop', '15.6" Touchscreen, Intel® Core i5, 16GB Memory, 256GB Solid State Drive, Windows® 11', 849.99, 'Electronic'),
+(112, 'Scissor', '8", Straight, Black', 10.49, 'Office Supply');
+
+-- loading fake data into office supplies table
+INSERT INTO officeSupplies(OSproductID, consumables) VALUES
+(101, 'consumable'),
+(102, 'consumable'),
+(103, 'consumable'),
+(104, 'reusable'),
+(107, 'reusable'),
+(112, 'reusable');
+
+-- loading fake data into furniture table
+INSERT INTO furniture(FproductID, material) VALUES
+(105, 'Glass'),
+(106, 'Metal'),
+(108, 'Leather'),
+(109, 'Plastic');
+
+-- loading fake data into customers table
+INSERT INTO electronic(EproductID, brand) VALUES
+(110, 'Ativa'),
+(111, 'Dell');
+
+--- loading fake data into orders table
+INSERT INTO orders(orderID, orderDate, street, city, state, zip, orderStatus, orderType, custID) VALUES
+(1001, '2022-10-05', '905 Glendale Lane', 'Macungie', 'PA', '18062', 'Finished', 'Pickup', 2),
+(1002, '2022-10-06', '7 Franklin Avenue', 'Circle Pines', 'MN', '55014', 'Finished', 'Delivery', 8),
+(1003, '2022-10-10', '62 Birch Hill Street', 'Fort Wayne', 'IN', '46804', 'Finished', 'Delivery', 9),
+(1004, '2022-10-11', '314 Westport Avenue', 'West Springfield', 'MA', '01089', 'Finished', 'Delivery', 10),
+(1005, '2022-10-18', '314 Westport Avenue', 'West Springfield', 'MA', '01089', 'Finished', 'Delivery', 10),
+(1006, '2022-10-18', '9184 South Armstrong Drive', 'Elkton', 'MD', '21921', 'Finished', 'Pickup', 3),
+(1007, '2022-10-19', '403 Maple St', 'Wenatchee', 'WA', '98801', 'Finished', 'Delivery', 11),
+(1008, '2022-10-20', '7493 Highland Street', 'Grove City', 'OH', '43123', 'Finished', 'Delivery', 12),
+(1009, '2022-10-23', '7546 West Cherry Hill Street', 'Camas', 'WA', '98607', 'Finished', 'Delivery', 6),
+(1010, '2022-10-26', '905 Glendale Lane', 'Macungie', 'PA', '18062', 'Finished', 'Pickup', 2),
+(1011, '2022-10-26', '7852 Shirley Drive', 'Columbus', 'GA', '31904', 'Finished', 'Delivery', 4),
+(1012, '2022-10-30', '7 Franklin Avenue', 'Circle Pines', 'MN', '55014', 'Finished', 'Delivery', 8),
+(1013, '2022-10-30', '7546 West Cherry Hill Street', 'Seattle', 'WA', '98101', 'Finished', 'Pickup', 6),
+(1014, '2022-11-01', '905 Glendale Lane', 'Macungie', 'PA', '18062', 'Finished', 'Pickup', 2),
+(1015, '2022-11-01', '7330 Wild Horse Drive', 'Lake Mary', 'FL', '32746', 'Finished', 'Delivery', 5),
+(1016, '2022-11-02', '403 Maple St', 'Wenatchee', 'WA', '98801', 'Finished', 'Pickup', 11),
+(1017, '2022-11-05', '403 Maple St', 'Wenatchee', 'WA', '98801', 'Finished', 'Pickup', 11),
+(1018, '2022-11-06', '5895 East Hallow Street', 'Ontario', 'CA', '91761','Finished', 'Pickup', 14),
+(1019, '2022-11-06', '7330 Wild Horse Drive', 'Lake Mary', 'FL', '32746', 'Finished', 'Pickup', 5),
+(1020, '2022-11-10', '7546 West Cherry Hill Street', 'Camas', 'WA', '98607', 'Finished', 'Pickup', 11);
+
+-- loading fake data into vendor table
+INSERT INTO vendor(vendorID, name, street, city, state, zip, phone) VALUES
+(10001, 'Sharpie', '20 East Fawn Circle', 'Atlanta', 'GA', '30303', '8003463278'),
+(10002, 'Dell', '72 Trusel St', 'South Plainfield', 'NJ', '07080', '8003951223'),
+(10003, 'Post-It', '9081 East Mulberry Street', 'Torrance', 'CA', '90505', '8002320981'),
+(10004, 'Just Basics', '7589 Brown Avenue', 'Gwynn Oak', 'MD', '21207', '8004253465'),
+(10005, 'At A Glance', '824 Riverview Street', 'Kearny', 'NJ', '07032', '8008556632'),
+(10006, 'Ativa', '9636 Glen Creek Avenue', 'Bountiful', 'UT', '84010', '8001221187'),
+(10007, 'Cardino', '26 Marlborough Ave', 'Oxnard', 'CA', '93035', '8003225883'),
+(10008, 'Realspace', '616 Wood Drive', 'Morton Grove', 'IL', '60053', '8002724976'),
+(10009, 'Sauder', '534 Olive Street', 'Stone Mountain', 'GA', '30083', '8009239242'),
+(10010, 'WorkPro', '238 Selby Street', 'Oviedo', 'FL', '32765', '8003674822');
+
+-- loading fake data into warehouse table
+INSERT INTO warehouse(warehouseID, street, city, state, zip, vendorID) VALUES
+(11001, '7300 Chapman Avenue', 'Garden Grove', 'CA', '92841', 10002),
+(11002, '3366 East Willow Street', 'Signal Hill', 'CA', '90755', 10005),
+(11003, '2901 West 36Th Place', 'Chicago', 'IL', '60632', 10001),
+(11004, '6225 West by NW Boulevard', 'Houston', 'TX', '77040', 10009),
+(11005, '800 West Bryn Mawr Avenue', 'Itasca', 'IL', '60143', 10002),
+(11006, '1801 Cypress Lake Drive', 'Orlando', 'FL', '32837', 10010),
+(11007, '4700 Muhlhauser Road', 'West Chester', 'OH', '45011', 10002),
+(11008, '1331 Boltonfield Road', 'Columbus', 'OH', '43228', 10004),
+(11009, '840 Boling Street', 'Jackson', 'MS', '39209', 10007),
+(11010, '2500 Mill Center Parkway', 'Buford', 'GA', '30518', 10008),
+(11011, '8205 Patuxent Range Road', 'Jessup', 'MD', '20794', 10006),
+(11012, '2401 Midpoint Drive', 'Edwardsville', 'KS', '66111', 10003);
+
+-- loading fake data into delivery table
+INSERT INTO delivery(DOrderID, trackingNumber, shippingDate, warehouseID) VALUES
+(1002, '9400112256743456274378', '2022-10-08', 11001),
+(1003, '9400253862741852650109', '2022-10-11', 11008),
+(1004, '9400258609130518235980', '2022-10-12', 11002),
+(1005, '9400250618532714352667', '2022-10-20', 11002),
+(1007, '9400135938702198345245', '2022-10-20', 11009),
+(1008, '9400121235389524108890', '2022-10-22', 11010),
+(1009, '9400353621037596352832', '2022-10-25', 11003),
+(1011, '9400259567871852650110', '2022-10-28', 11006),
+(1012, '9400154789971852771240', '2022-11-01', 11003),
+(1015, '9400296780945522312900', '2022-11-03', 11010);
+
+-- loading fake data into store table
+INSERT INTO store(storeID, street, city, state, zip) VALUES
+(110001, '11100 Garden Grove Boulevard', 'Garden Grove', 'CA', '92843'),
+(110002, '2205 S Grove Avenue', 'Ontario', 'CA', '91761'),
+(110003, '1475 North 19th Avenue', 'Bozeman', 'MT', '59718'),
+(110004, '6815 W Canal Drive', 'Kennewick', 'WA', '99336'),
+(110005, '216 Caldwell Blvd', 'Nampa', 'ID', '83651'),
+(110006, '11130 New Hampshire Avenue', 'Silver Spring', 'MD', '20904'),
+(110007, '7037 Plaza Center Drive', 'West Jordan', 'UT', '84084'),
+(110008, '2011 Walnut Street', 'Cary', 'NC', '27518'),
+(110009, '222 Fairview Drive', 'Carson City', 'NV', '89701'),
+(110010, '165 Disc Drive', 'Sparks', 'NV', '89436'),
+(110011, '13275 City Square Drive', 'Jacksonville', 'FL', '32218'),
+(110012, '7231 Roosevelt Boulevard', 'Philadelphia', 'PA', '19149'),
+(110013, '7231 London Drive', 'Seattle', 'WA', '98101');
+
+-- loading fake data into pickup table
+INSERT INTO pickup(POrderID, pickupTime, storeID) VALUES
+(1001, '2022-10-06 at 12:10', 110012),
+(1006, '2022-10-19 at 16:08', 110006),
+(1010, '2022-10-28 at 13:18', 110012),
+(1013, '2022-10-31 at 16:35', 110013),
+(1014, '2022-11-02 at 10:45', 110012),
+(1016, '2022-11-03 at 09:50', 110013),
+(1017, '2022-11-05 at 11:10', 110003),
+(1018, '2022-11-08 at 12:50', 110002),
+(1019, '2022-11-08 at 14:10', 110011),
+(1020, '2022-11-11 at 08:25', 110004);
+
+-- loading fake data into order line table
+INSERT INTO orderLine(orderID, productID, quantity) VALUES
+(1001, 101, 2),
+(1001, 102, 1),
+(1002, 103, 3),
+(1003, 111, 1),
+(1004, 112, 1),
+(1005, 103, 2),
+(1005, 105, 1),
+(1006, 102, 3),
+(1007, 109, 1),
+(1008, 107, 2),
+(1009, 103, 1),
+(1010, 106, 1),
+(1011, 111, 2),
+(1012, 107, 7),
+(1013, 102, 10),
+(1014, 103, 15),
+(1015, 101, 4),
+(1016, 112, 2),
+(1017, 112, 4),
+(1018, 110, 1),
+(1019, 107, 2),
+(1020, 107, 2);
+-- loading fake data into order return table
+INSERT INTO orderReturn(receiptNumber, purchaseDate, returnDate, storeID) VALUES
+('100578', '2022-06-05', '2022-06-06', 110001),
+('108680', '2022-06-16', '2022-06-20', 110001),
+('135286', '2022-06-28', '2022-06-29', 110005),
+('145254', '2022-07-09', '2022-07-11', 110002),
+('156290', '2022-08-01', '2022-08-02', 110010),
+('173167', '2022-08-12', '2022-08-18', 110004),
+('148235', '2022-08-19', '2022-08-21', 110002),
+('109121', '2022-08-30', '2022-09-01', 110003),
+('128815', '2022-09-01', '2022-09-02', 110005),
+('159268', '2022-09-06', '2022-09-10', 110011);
+-- loading fake data into return process table
+INSERT INTO returnProcess(receiptNumber, storeID) VALUES
+('100578', 110001),
+('108680', 110001),
+('135286', 110005),
+('145254', 110002),
+('156290', 110010),
+('173167', 110004),
+('148235', 110002),
+('109121', 110003),
+('128815', 110005),
+('159268', 110011);
+-- loading fake data into employee table
+INSERT INTO employee(employeeID, name, SSN, employeeType, warehouseID) VALUES
+(85000001, 'Johnna Dyan', '291611215', 'Manager', 11001),
+(85000002, 'Kevan Jeana', '683470869', 'Packer', 11001),
+(85000003, 'Catherin Russ', '469542908', 'Packer', 11003),
+(85000004, 'Faithe Jacquetta', '168292629', 'Manager', 11002),
+(85000005, 'Callan Brandt', '135684388', 'Packer', 11002),
+(85000006, 'Geraldine Johanna', '434900090', 'Manager', 11003),
+(85000007, 'Loyd Diantha', '734653784', 'Packer', 11006),
+(85000008, 'Claudia Alycia', '386461292', 'Manager', 11004),
+(85000009, 'Briana Trina', '742736168', 'Packer', 11009),
+(85000010, 'Columbine Reilly', '963985916', 'Manager', 11005),
+(85000011, 'Palmer Wilson', '268006663', 'Manager', 11006),
+(85000012, 'Larrie Bernard', '316303558', 'Packer', 11008),
+(85000013, 'Loir Finder', '756882027', 'Packer', 11011),
+(85000014, 'Sanjo Trinston', '325360056', 'Manager', 11012),
+(85000015, 'Harry Romreo', '356951574', 'Packer', 11010),
+(85000016, 'Fin Endor', '391157505', 'Packer', 11009),
+(85000017, 'Ako Johnson', '791991026', 'Manager', 11010),
+(85000018, 'Zorio O’Neil', '259006132', 'Manager', 11011),
+(85000019, 'Amanda Namilo', '592344622', 'Packer', 11005),
+(85000020, 'Luna Nova', '445316259', 'Manager', 11009),
+(85000021, 'Andrew Hanbridge', '251526723', 'Packer', 11003),
+(85000022, 'Sucy Mirage', '349491706', 'Manager', 11007);
+
+-- loading fake data into packer table
+INSERT INTO packer(PemployeeID, hourlyWage) VALUES
+(85000002, '18.00'),
+(85000003, '14.00'),
+(85000005, '16.20'),
+(85000007, '16.00'),
+(85000009, '12.00'),
+(85000012, '13.00'),
+(85000013, '14.50'),
+(85000015, '14.25'),
+(85000016, '15.00'),
+(85000019, '14.75'),
+(85000021, '15.75');
+-- loading fake data into manager table
+INSERT INTO manager(MemployeeID, annualSalary) VALUES
+(85000001, '68000'),
+(85000004, '67500'),
+(85000006, '55000'),
+(85000008, '60000'),
+(85000010, '56000'),
+(85000011, '65500'),
+(85000014, '68750'),
+(85000017, '62400'),
+(85000018, '60750'),
+(85000020, '69200'),
+(85000022, '69930');
+
